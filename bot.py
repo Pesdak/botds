@@ -30,6 +30,7 @@ async def on_ready():
 		newsfeed = vk.method('newsfeed.get', {'count': 1,'source_ids': -153688326})
 		if ag != newsfeed['items'][0]['post_id']:
 			ag = newsfeed['items'][0]['post_id']
+			await asyncio.sleep(1)
 			text = newsfeed['items'][0]['text']
 			try:
 				url = newsfeed['items'][0]['attachments'][0]['photo']['sizes'][7]['url']
@@ -38,10 +39,12 @@ async def on_ready():
 					emb = discord.Embed(title='Инсайды', description=f'{text}', colour=0xc28411)
 					emb.set_image(url=f'{url}')
 					await webhook.send(embed= emb,  username= 'Insiders')
+					await asyncio.sleep(1)
 			except KeyError:
 				async with aiohttp.ClientSession()  as session: 
 					webhook =  Webhook.from_url(webhook_url,  adapter= AsyncWebhookAdapter(session))
 					emb = discord.Embed(title='Инсайды', description=f'{text}', colour=0xc28411)
 					await webhook.send(embed= emb,  username= 'Insiders')
+					await asyncio.sleep(1)
 
 Bot.run(str(token))
