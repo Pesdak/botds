@@ -21,11 +21,11 @@ Bot.remove_command('help')
 
 @Bot.event
 async def on_ready():
-    print('Бот в онлайне!')
-    game = discord.Game(r"Insiders")    
-    await Bot.change_presence(status=discord.Status.idle, activity=game)
+	print('Бот в онлайне!')
+	game = discord.Game(r"Insiders")    
+	await Bot.change_presence(status=discord.Status.idle, activity=game)
 
-    ag = 0
+	ag = 0
 	while True:
 		newsfeed = vk.method('newsfeed.get', {'count': 1,'source_ids': -153688326})
 		if ag != newsfeed['items'][0]['post_id']:
