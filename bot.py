@@ -37,13 +37,11 @@ async def on_ready():
 					webhook =  Webhook.from_url(webhook_url,  adapter= AsyncWebhookAdapter(session))
 					emb = discord.Embed(title='Инсайды', description=f'{text}', colour=0xc28411)
 					emb.set_image(url=f'{url}')
-					emb.set_footer(text=webhook.created_at.today().strftime("%d.%B.%Y %X"))
 					await webhook.send(embed= emb,  username= 'Insiders')
 			except KeyError:
 				async with aiohttp.ClientSession()  as session: 
 					webhook =  Webhook.from_url(webhook_url,  adapter= AsyncWebhookAdapter(session))
 					emb = discord.Embed(title='Инсайды', description=f'{text}', colour=0xc28411)
-					emb.set_footer(text=webhook.created_at.today().strftime("%d.%B.%Y %X"))
 					await webhook.send(embed= emb,  username= 'Insiders')
 
 Bot.run(str(token))
